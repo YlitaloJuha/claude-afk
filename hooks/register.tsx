@@ -66,6 +66,7 @@ const taken = atom({ plugin: 'afk', key: 'taken' } as const, 0)
 const idleTurns = atom({ plugin: 'afk', key: 'idleTurns' } as const, 0)
 const toolCalls = atom({ plugin: 'afk', key: 'toolCalls' } as const, 0)
 const isNoticeDue = atom({ plugin: 'afk', key: 'isNoticeDue' } as const, false)
+const isMenuOpen = atom({ plugin: 'afk', key: 'isMenuOpen' } as const, false)
 
 async function stop($: EngineInterface, why: string) {
   await update($, mode, () => 'off')
@@ -169,5 +170,26 @@ export const register: Register = on => {
   on('session.end', async ($, e, next) => {
     if (e.reason === 'clear' || e.reason === 'resume') await update($, mode, () => 'off')
     return next(e)
+  })
+
+  // The bars mod holds these controls on its line; without it, this draws its own.
+  on('ui.render', { component: 'AbovePrompt' }, async ($, e, next) => {
+    const rest = await next(e)
+    if (e.props.hasSurvey || (await $.command.list()).some(c => c.name === 'bars')) return rest
+    const current = await read($, mode)
+    const count = await read($, taken)
+    const isOpen = await read($, isMenuOpen)
+    const { Box, Button } = $.ui.resolve(e)
+    return (
+      <Box flexDirection="column">
+        {rest}
+        <Box flexDirection="row" justifyContent="flex-end" columnGap={1}>
+          {isOpen && MODES.map(m => (
+            <Button key={`afk-${m.mode}`} label={m.mode} plain dimColor={m.mode === current ? undefined : true} onPress={async () => { await update($, isMenuOpen, () => false); await choose($, m.mode) }} />
+          ))}
+          <Button key="afk" label={current === 'off' ? 'AFK' : `AFK ${current} ${count}`} plain dimColor={current === 'off' ? true : undefined} onPress={() => update($, isMenuOpen, open => !open)} />
+        </Box>
+      </Box>
+    )
   })
 }

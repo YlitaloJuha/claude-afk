@@ -14,6 +14,7 @@ declare module 'claude-code' {
       idleTurns: number
       toolCalls: number
       isNoticeDue: boolean
+      isMenuOpen: boolean
     }
   }
 }

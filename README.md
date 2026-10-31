@@ -5,12 +5,12 @@
 <p align="center">
   <img alt="type: Claude Code mod" src="https://img.shields.io/badge/type-Claude%20Code%20mod-6f42c1?style=flat-square">
   <img alt="tested on: Claude Code 2.1.292" src="https://img.shields.io/badge/tested%20on-Claude%20Code%202.1.292-D97757?style=flat-square">
-  <img alt="tests: 17 passing" src="https://img.shields.io/badge/tests-17%20passing-2ea44f?style=flat-square">
+  <img alt="tests: 19 passing" src="https://img.shields.io/badge/tests-19%20passing-2ea44f?style=flat-square">
 </p>
 
-<p align="center"><img src="docs/usage.svg" alt="AFK test mode running in a real terminal session" width="860"></p>
+<p align="center"><img src="docs/usage.svg" alt="AFK alone, in test mode, from a real terminal session" width="860"></p>
 
-<p align="center"><sub>A real terminal session: `/afk test` sends the rules, and the line shows the mode and the turns taken.</sub></p>
+<p align="center"><sub>Only this mod enabled, in a real terminal session: `/afk test` sends the rules, and the button shows the mode and the turns taken.</sub></p>
 
 Pick a mode and go for lunch. The session keeps taking the next step until the work runs out, a limit is reached, or you type again. It never commits, never pushes and never waits on a question.
 
@@ -63,7 +63,7 @@ No network, no shell commands and no file access through the mod API. While it i
 
 - **It does not change your permission mode.** In manual mode the session stops at the first permission prompt and waits for you. Choose a mode that allows edits before you leave.
 - The command blocks are pattern matches, so a command can be spelled past them. Treat them as a seatbelt, not a sandbox.
-- Without [`claude-bars`](https://github.com/YlitaloJuha/claude-bars) there is no button, only `/afk`.
+- It draws its own AFK button. With [`claude-bars`](https://github.com/YlitaloJuha/claude-bars) installed, the button moves onto that line.
 - Buttons have only been pressed in tests. `/afk` has been run live.
 
 ## Develop

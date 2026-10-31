@@ -1,5 +1,5 @@
 import { expect, mock, test } from 'claude-code/testing'
-import type { On, SessionStartInput, TurnCompleteInput } from 'claude-code'
+import type { On, RenderPropsOf, SessionStartInput, TurnCompleteInput } from 'claude-code'
 
 import { DONE_MARK, MAX_TURNS, isForbidden, kickoff, nudge } from '../hooks/register'
 
@@ -10,7 +10,10 @@ let turns = 0
 const turn = (over: Partial<AnsweredTurn> = {}): TurnCompleteInput => ({ answer: 'ok', durationMs: 1000, isAborted: false, turnId: 't' + ++turns, reason: 'answer', ...over })
 const typed = (text: string) => ({ text, wait: false, origin: { kind: 'composer' } as const })
 
-function world(on: On, percentUsed = 10) {
+const props: RenderPropsOf['AbovePrompt'] = { hasSurvey: false, isWorking: false, maxRows: 10, bodyColumns: 75, scroll: { offset: 0, bodyRows: 10 }, view: {} }
+const mount = { plugin: 'afk', surface: 'desktop', component: 'AbovePrompt', props } as const
+
+function world(on: On, percentUsed = 10, commands: string[] = []) {
   const prompts: string[] = []
   const ran: string[] = []
   on('session.start', ($, e) => ({ cwd: e.cwd }))
@@ -21,6 +24,7 @@ function world(on: On, percentUsed = 10) {
   on('prompt.submit', ($, e) => { prompts.push(e.text); return { text: e.text } })
   on('turn.complete', ($, e) => ({ text: e.answer }))
   on('tool.call', ($, e) => { ran.push(e.tool); return { result: {} } })
+  on('command.list', () => ({ value: commands.map(name => ({ name, description: '', source: 'plugin' as const })) }))
   on('ui.toast', () => ({ value: undefined }))
   on('ui.log', () => ({ value: undefined }))
   on('ui.render', ($, e) => $.ui.resolve(e).Text({ children: ['beneath'] }))
@@ -188,6 +192,31 @@ test('Off stops it', async ($, on) => {
   await $.command.run({ command: 'afk', args: 'off' })
   await workedTurn($, clock)
   expect(w.prompts).toEqual([kickoff('test')])
+})
+
+test('on its own it draws a menu, and a mode starts the work', async ($, on) => {
+  const clock = mock.clock(on)
+  const w = world(on)
+  await $.session.start(session)
+  for (const surface of ['terminal', 'desktop', 'vscode', 'mobile'] as const) {
+    const each = await $.ui.mount({ ...mount, surface })
+    expect(await each.find({ key: 'afk' })).toBeDefined()
+    await each.unmount()
+  }
+  const ui = await $.ui.mount(mount)
+  expect(await ui.find({ key: 'afk-test' })).toBeUndefined()
+  await ui.press({ key: 'afk' })
+  await ui.press({ key: 'afk-test' })
+  await clock.advance(5)
+  expect(w.prompts).toEqual([kickoff('test')])
+})
+
+test('with the bars mod it leaves the controls to that line', async ($, on) => {
+  mock.clock(on)
+  world(on, 10, ['bars'])
+  await $.session.start(session)
+  const ui = await $.ui.mount(mount)
+  expect(await ui.find({ key: 'afk' })).toBeUndefined()
 })
 
 test('/afk names the modes and refuses an unknown one', async ($, on) => {
