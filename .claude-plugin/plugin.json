@@ -1,0 +1,17 @@
+{
+  "name": "afk",
+  "version": "0.1.0",
+  "description": "Walk away and leave Claude working: develop, test, refactor or housekeeping, under rules you can read.",
+  "author": {
+    "name": "Juha Ylitalo",
+    "url": "https://github.com/YlitaloJuha"
+  },
+  "types": "./types/index.d.ts",
+  "repository": "https://github.com/YlitaloJuha/claude-afk",
+  "keywords": [
+    "claude-code-mods",
+    "claude-mods",
+    "function-hooks",
+    "mod"
+  ]
+}

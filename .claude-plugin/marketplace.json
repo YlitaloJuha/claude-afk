@@ -1,0 +1,14 @@
+{
+  "name": "claude-afk",
+  "owner": {
+    "name": "Juha Ylitalo",
+    "url": "https://github.com/YlitaloJuha"
+  },
+  "plugins": [
+    {
+      "name": "afk",
+      "source": "./",
+      "description": "Walk away and leave Claude working: develop, test, refactor or housekeeping, under rules you can read."
+    }
+  ]
+}
