@@ -6,6 +6,7 @@
   <img alt="type: Claude Code mod" src="https://img.shields.io/badge/type-Claude%20Code%20mod-6f42c1?style=flat-square">
   <img alt="tested on: Claude Code 2.1.292" src="https://img.shields.io/badge/tested%20on-Claude%20Code%202.1.292-D97757?style=flat-square">
   <img alt="tests: 19 passing" src="https://img.shields.io/badge/tests-19%20passing-2ea44f?style=flat-square">
+  <img alt="license: MIT" src="https://img.shields.io/badge/license-MIT-555?style=flat-square">
 </p>
 
 <p align="center"><img src="docs/usage.svg" alt="AFK alone, in test mode, from a real terminal session" width="860"></p>
@@ -76,8 +77,10 @@ claude --plugin-dir .
 
 ## Credits
 
-- The list of prompt origins no person sent comes from [cache-tax](https://github.com/karanb192/cache-tax) (MIT).
+- The list of prompt origins no person sent comes from [cache-tax](https://github.com/karanb192/cache-tax) by Karan Bansal (MIT).
 
-## License
+## License and warranty
 
-Not chosen yet, so all rights are reserved for now.
+[MIT](LICENSE). `THIRD_PARTY_LICENSES.md` covers the parts that came from other projects.
+
+Provided **as is, with no warranty of any kind**. You use it at your own risk, and the author is not liable for anything that results from using it, including lost work, usage charges or changes to your code. AFK acts on your project while nobody is watching, so what it does in your repository is yours to check.
