@@ -65,7 +65,7 @@ No network, no shell commands and no file access through the mod API. While it i
 - **It does not change your permission mode.** In manual mode the session stops at the first permission prompt and waits for you. Choose a mode that allows edits before you leave.
 - The command blocks are pattern matches, so a command can be spelled past them. Treat them as a seatbelt, not a sandbox.
 - It draws its own AFK button. With [`claude-bars`](https://github.com/YlitaloJuha/claude-bars) installed, the button moves onto that line.
-- Live-tested in real sessions: choosing a mode, taking turns, the `git push` block, stopping by itself and stopping when you type. A click on the button itself and the block on questions have only been checked in tests.
+- Tested in real sessions, including clicks on the button in the desktop app: choosing a mode, taking turns, the `git push` block, stopping by itself and stopping when you type. The block on questions has only been checked in tests.
 
 ## Develop
 
