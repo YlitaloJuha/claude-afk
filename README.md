@@ -13,7 +13,7 @@
 
 <p align="center"><sub>Only this mod enabled, in a real terminal session: `/afk test` sends the rules, and the button shows the mode and the turns taken.</sub></p>
 
-Pick a mode and go for lunch. The session keeps taking the next step until the work runs out, a limit is reached, or you type again. It never commits, never pushes and never waits on a question.
+Pick a mode and go for lunch. The session keeps taking the next step until the work runs out, a limit is reached, or you type again. Its rules tell it not to commit or push, and it tries to block those commands and any questions. Read the limits before you leave it alone.
 
 ## Install
 
@@ -75,9 +75,14 @@ claude plugin test .
 claude --plugin-dir .
 ```
 
+## Make it yours
+
+Once it is loaded, ask your own Claude to fit it to how you work, for example to add a mode of your own, or change the rules and limits. The code is in `hooks/register.tsx`, and the license allows changes. Keep your version in a fork, so an update does not replace it. What you change is yours to check.
+
 ## Credits
 
 - The list of prompt origins no person sent comes from [cache-tax](https://github.com/karanb192/cache-tax) by Karan Bansal (MIT).
+- Not related to [CamdenBopp/claude-afk](https://github.com/CamdenBopp/claude-afk), a different mod with the same name that sends spoken and iMessage pings.
 
 ## Try other mods together
 
@@ -88,3 +93,7 @@ This mod works on its own, and it also works side by side with my other Claude C
 [MIT](LICENSE). `THIRD_PARTY_LICENSES.md` covers the parts that came from other projects.
 
 Provided **as is, with no warranty of any kind**. You use it at your own risk, and the author is not liable for anything that results from using it, including lost work, usage charges or changes to your code. AFK acts on your project while nobody is watching, so what it does in your repository is yours to check.
+
+**It may break.** It relies on how Claude Code works today, and has been tested on version 2.1.292. It may stop working after a future update if Anthropic changes things.
+
+This is an independent, unofficial project. It is not affiliated with, endorsed by or supported by Anthropic.
