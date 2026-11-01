@@ -1,5 +1,6 @@
 {
   "name": "claude-afk",
+  "description": "Walk away and leave Claude working: develop, test, refactor or housekeeping, under rules you can read.",
   "owner": {
     "name": "Juha Ylitalo",
     "url": "https://github.com/YlitaloJuha"

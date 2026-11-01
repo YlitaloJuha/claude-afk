@@ -4,7 +4,7 @@
 
 <p align="center">
   <img alt="type: Claude Code mod" src="https://img.shields.io/badge/type-Claude%20Code%20mod-6f42c1?style=flat-square">
-  <img alt="tested on: Claude Code 2.1.292" src="https://img.shields.io/badge/tested%20on-Claude%20Code%202.1.292-D97757?style=flat-square">
+  <img alt="tested on: Claude Code 2.1.309" src="https://img.shields.io/badge/tested%20on-Claude%20Code%202.1.309-D97757?style=flat-square">
   <img alt="tests: 19 passing" src="https://img.shields.io/badge/tests-19%20passing-2ea44f?style=flat-square">
   <img alt="license: MIT" src="https://img.shields.io/badge/license-MIT-555?style=flat-square">
 </p>
@@ -30,9 +30,6 @@ claude plugin install afk --marketplace YlitaloJuha/claude-afk
 ```
 
 In the desktop app, click + next to the prompt box, then Plugins, Add marketplace with `YlitaloJuha/claude-afk`, then Add plugin.
-
-> [!NOTE]
-> This repository is private for now. Installing needs read access and a GitHub credential on your machine, such as `gh auth login` then `gh auth setup-git`.
 
 ## What it does
 
@@ -66,6 +63,7 @@ No network, no shell commands and no file access through the mod API. While it i
 - The command blocks are pattern matches, so a command can be spelled past them. Treat them as a seatbelt, not a sandbox.
 - It draws its own AFK button. With [`claude-bars`](https://github.com/YlitaloJuha/claude-bars) installed, the button moves onto that line.
 - Tested in real sessions, including clicks on the button in the desktop app: choosing a mode, taking turns, the `git push` block, stopping by itself and stopping when you type. The block on questions has only been checked in tests.
+- Claude Code draws the band above the prompt only in the terminal and the desktop app, so what this mod draws there does not show in VS Code or on mobile.
 
 ## Develop
 
@@ -94,6 +92,6 @@ This mod works on its own, and it also works side by side with my other Claude C
 
 Provided **as is, with no warranty of any kind**. You use it at your own risk, and the author is not liable for anything that results from using it, including lost work, usage charges or changes to your code. AFK acts on your project while nobody is watching, so what it does in your repository is yours to check.
 
-**It may break.** It relies on how Claude Code works today, and has been tested on version 2.1.292. It may stop working after a future update if Anthropic changes things.
+**It may break.** It relies on how Claude Code works today, and has been tested on versions 2.1.292 and 2.1.309. It may stop working after a future update if Anthropic changes things.
 
 This is an independent, unofficial project. It is not affiliated with, endorsed by or supported by Anthropic.
